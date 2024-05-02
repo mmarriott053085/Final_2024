@@ -226,3 +226,5 @@ The inferential results show that that those who received the placebo had a lowe
 Based on the date results for the drug user group, the vaccine may be unsafe and ineffective.
 
 # Overall Results and Conclusions
+
+When divided into groups, there seem to be little difference among males and females who took the vaccine and is deemed safe and effective. However, those who identify as LGBTQ or a druguser is it deemed less safe and ineffective. Therefor we can conclude that sex is independent of how effective the vaccine is. However, if you identify as a drug user or LGBTQ the vaccine is not recommended.
