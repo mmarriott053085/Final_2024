@@ -136,10 +136,50 @@ The inferential results coincide with the numerical results. The female populati
 
 Based on the results of the barplot, numerical and inferential results, the vaccine seems to be safe and effective for the female opoulation.
 
-
 ## LGBTQ
 
+### Barplot
 
+```{r}
+dd2 <- gay %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+This barplot shows a shift in the effectiveness in contraction rate among those in the LBGTQ community. The contraction rate of covid-19 of those who  identify ad LGBTQ or gay is over 80 percent, compared to the previous two groups. The placebo and vaccinated groups who do not contract the illness, seem to be much lower at 50 percent.
+
+# Numerical results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=gay)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data correlates with the barplot, that the contraction rate for those who received that vaccine and still contracted the illness is relatively high, thus giving inclination that that vaccine for the LGBTQ community may be unsafe or less effective.
+
+### Inferential results
+
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+gaysfish <- fisher.test(table1)
+gaysfish
+```
+
+The data from the inferential results seem to reflect that of the barplot and the numerical results. Among the LGBTQ community, there seems to be a lower effectiveness rate and may be considered unsafe.
+
+The barplot, numerical, and inferential results, seem to show that the vaccine may be slightly less effective.
 
 ## Druggies
 
