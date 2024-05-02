@@ -45,10 +45,53 @@ In order to create an effectiveness interval for all four categories each group 
 
 ## Males
 
+### Barplot
+
+```{r}
+dd2 <- male %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
 
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+  
+The plot represents the male population and the relationship of that poulation contracting covid-19 after getting the vaccine or placebeo. 
+
+The first plot show how many males were given the placebo and the vaccine. Only small portion who took the vaccine or placebo caught covid, while nearly 10,000 of those to received the vaccine or placebo did not catch covid-19. The second graph shows that nearly 80 percent that took the placebo got infected, while only 30 percent who took the vaccine became infected. Nearly 50 percent in each group did not become infected.
+
+### Numerical results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=male)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical results show the percentages of males who contracted covid-19 after taking the vaccine or placebo. Nearly 70 percent who took the placebo contracted covid-19 and 30 percent took the vaccine caught covid. However, only 50 percent did not contract covid-19 after the placebo and roughly 50 percent did not contract covid-19 after the vaccine. Because there was a higher instance of contracting covid-19 when the the placebo, it shows evidence that the vaccine is safe and effective for males.
+
+### Inferential results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+malesfish <- fisher.test(table1)
+malesfish
+```
+
+The inferential results show the infection rate of those who contracted covid-19 after taking the vaccine was low, while those who took the placebo had a higher contraction rate. the effectiveness confidence internal was greater than 1 according to the null hypthesis, so there is evidence of effectiveness of the 
+vaccine among males.
+
+Therefor, the graph, numerical and inferential analysis, show that the vaccine does offer some effectiveness among males ans is therefore safe to take.
 
 ## Females
+
 
 
 ## LGBTQ
