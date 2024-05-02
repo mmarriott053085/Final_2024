@@ -183,5 +183,46 @@ The barplot, numerical, and inferential results, seem to show that the vaccine m
 
 ## Druggies
 
+### Barplot
+
+```{r}
+dd2 <-  Druguser %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+This barplot seems to show that the group who identify as drug users, also have a higher instance of contracting covid-19  when vaccinated. This group also has an 80 percent contraction rate among the vaccinated group and less than 50 percent than those who are not vaccinated.
+
+### Numerical results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=Druguser)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical results seem to reflect that of the bargraph. Those who identify as drug users have a higher contraction rate than those who do not identify as drug users or are not vaccinated.
+
+### Inferntial results
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+Drugusersfish <- fisher.test(table1)
+Drugusersfish
+```
+
+The inferential results show that that those who received the placebo had a lower contraction rate than those who received the vaccine. Therefore, we can conclude that the vaccine for drug users may be ineffective.
+
+Based on the date results for the drug user group, the vaccine may be unsafe and ineffective.
 
 # Overall Results and Conclusions
