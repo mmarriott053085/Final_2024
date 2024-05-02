@@ -30,7 +30,22 @@ Druguser = filter(FinalData, DrugUser =="yes")
 
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
+#Dataset details
+
+First,the varibales from the FinalData had to be changed from character to factor variable using the  dplyr code:
+
+FinalData <- FinalData %>%
+mutate(across(where(is.character), as.factor))
+
+I also used the Cat_Cat.rmd help file accomplish this.
+
+Next, the  subgroups had to be made into borader categories in order to get the proper results. Male and Female were made into subgroups, as well as gay/LBGTQ and those to answred yes to using drugs. The categories were made in order to see whether or not these groups should or should not take the new covid-19 vaccine.
+
+In order to create an effectiveness interval for all four categories each group was made into seperate variables.
+
 ## Males
+
+
 
 
 ## Females
